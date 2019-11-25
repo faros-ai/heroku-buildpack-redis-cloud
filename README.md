@@ -69,7 +69,7 @@ We're then ready to deploy to Heroku with an encrypted connection between the dy
     ...
     -----> Fetching custom git buildpack... done
     -----> Multipack app detected
-    =====> Downloading Buildpack: https://github.com/HireFrederick/heroku-buildpack-redis-cloud.git
+    =====> Downloading Buildpack: https://github.com/faros-ai/heroku-buildpack-redis-cloud.git
     =====> Detected Framework: stunnel
            Using stunnel version: 5.02
            Using stack version: cedar
