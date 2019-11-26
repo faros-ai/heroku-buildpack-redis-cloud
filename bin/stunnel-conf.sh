@@ -20,7 +20,7 @@ delay = yes
 socket = l:TCP_NODELAY=1
 socket = r:TCP_NODELAY=1
 options = NO_SSLv3
-sslVersion = TLSv1.3
+sslVersion = TLSv1.2
 
 ciphers = ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:RSA+AESGCM:RSA+AES:!aNULL:!MD5:!DSS
 renegotiation = no
