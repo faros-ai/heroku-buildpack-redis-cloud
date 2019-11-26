@@ -19,7 +19,6 @@ delay = yes
 
 socket = l:TCP_NODELAY=1
 socket = r:TCP_NODELAY=1
-options = NO_SSLv2
 options = NO_SSLv3
 sslVersion = TLSv1.3
 
