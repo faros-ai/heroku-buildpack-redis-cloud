@@ -2,6 +2,13 @@
 URLS=${REDIS_STUNNEL_URLS:-REDIS_CLOUD_URL}
 n=1
 
+# Enable this option to prevent stunnel from using SSLv3 with cedar-10
+if [ -z "${STUNNEL_FORCE_TLS}" ]; then
+  STUNNEL_FORCE_SSL_VERSION=""
+else
+  STUNNEL_FORCE_SSL_VERSION="sslVersion = TLSv1.2"
+fi
+
 mkdir -p /app/vendor/stunnel/var/run/stunnel/
 echo "$STUNNEL_CERT" > /app/vendor/stunnel/stunnel.crt
 echo "$STUNNEL_KEY" > /app/vendor/stunnel/stunnel.key
@@ -17,15 +24,12 @@ cafile = /app/vendor/stunnel/stunnel_ca.crt
 verify = 2
 delay = yes
 
-socket = l:TCP_NODELAY=1
 socket = r:TCP_NODELAY=1
+socket = l:TCP_NODELAY=1
 options = NO_SSLv3
-sslVersion = TLSv1.2
-
-ciphers = ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:RSA+AESGCM:RSA+AES:!aNULL:!MD5:!DSS
-renegotiation = no
-
 TIMEOUTidle = 86400
+${STUNNEL_FORCE_SSL_VERSION}
+ciphers = HIGH:!ADH:!AECDH:!LOW:!EXP:!MD5:!3DES:!SRP:!PSK:@STRENGTH
 debug = ${STUNNEL_LOGLEVEL:-notice}
 EOFEOF
 
